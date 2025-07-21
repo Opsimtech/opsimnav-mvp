@@ -74,8 +74,25 @@ if submitted:
     col2.metric("⛽ Fuel Use", f"{fuel} tons/day")
     col3.metric("🌍 CII Rating", cii)
 
+    st.markdown("### 3. Flow Field Visualization")
+    st.image("https://i.imgur.com/Vjoxbl5.jpeg", caption="Simulated Pressure Field around Ship", use_column_width=True)
+
+    st.markdown("### 4. Performance Suggestions")
+    if cii == "C":
+        st.warning("Consider reducing trim by 1.5° to improve fuel efficiency.")
+    if wave > 4:
+        st.info("High waves detected. Reduce engine load for safety.")
+    if fuel > 50:
+        st.info("High fuel use. Consider streamlined hull variant.")
+
+    st.markdown("### 5. Hull Variant Comparison")
+    cols = st.columns(3)
+    cols[0].image("https://i.imgur.com/yGq4LOA.jpeg", caption="Hull A – Baseline\nCII: C", use_column_width=True)
+    cols[1].image("https://i.imgur.com/Dmb3Ghv.jpeg", caption="Hull B – Streamlined\nCII: B", use_column_width=True)
+    cols[2].image("https://i.imgur.com/0oLwRKm.jpeg", caption="Hull C – Bulbous Bow\nCII: A", use_column_width=True)
+
     st.markdown("---")
-    st.markdown("### 3. Compliance Report")
+    st.markdown("### 6. Compliance Report")
     pdf_path = generate_pdf_report(ship_type, wave, wind, engine_load, trim, speed, fuel, cii)
     with open(pdf_path, "rb") as file:
         st.download_button("📄 Download PDF Report", file, file_name="opsimnav_report.pdf")
