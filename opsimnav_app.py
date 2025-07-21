@@ -76,14 +76,6 @@ if submitted:
     st.markdown("### 3. Flow Field Visualization")
     st.image("opsimnav_mock_visual.png", caption="Simulated Pressure Field and Hull Variants", use_column_width=True)
 
-    st.markdown("### 4. Performance Suggestions")
-    if cii == "C":
-        st.warning("Consider reducing trim by 1.5° to improve fuel efficiency.")
-    if wave > 4:
-        st.info("High waves detected. Reduce engine load for safety.")
-    if fuel > 50:
-        st.info("High fuel use. Consider streamlined hull variant.")
-
     st.markdown("---")
     st.markdown("### 5. Compliance Report")
     pdf_path = generate_pdf_report(ship_type, wave, wind, engine_load, trim, speed, fuel, cii)
